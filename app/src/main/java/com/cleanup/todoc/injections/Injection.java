@@ -12,11 +12,13 @@ import java.util.concurrent.Executors;
 public class Injection {
 
     public static TaskDataRepository provideTaskDataSource(Context context) {
+        System.out.println("Injection : TaskDataRepository");
         TodocDatabase database = TodocDatabase.getInstance(context);
         return new TaskDataRepository(database.taskDao());
     }
 
     public static ProjectDataRepository provideProjectDataSource(Context context) {
+        System.out.println("Injection : ProjectDataRepository");
         TodocDatabase database = TodocDatabase.getInstance(context);
         return new ProjectDataRepository(database.projectDao());
     }
@@ -26,6 +28,7 @@ public class Injection {
     }
 
     public static ViewModelFactory provideViewModelFactory(Context context) {
+        System.out.println("Injection : ViewModelFactory");
         TaskDataRepository dataSourceTask = provideTaskDataSource(context);
         ProjectDataRepository dataSourceProject = provideProjectDataSource(context);
         Executor executor = provideExecutor();
